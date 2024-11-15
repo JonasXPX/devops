@@ -1,12 +1,12 @@
 on:
   workflow_call:
     inputs:
-      java_version:
+      java-version:
         default: '21'
         description: 'Java version to be configured'
         required: false
         type: string
-      project_name:
+      project-name:
         required: true
         description: 'Project name'
         type: string
@@ -25,12 +25,12 @@ jobs:
       uses: actions/setup-java@v4.5.0
       with:
         distribution: 'corretto'
-        java-version: ${{ inputs.java_version }}
+        java-version: ${{ inputs.java-version }}
     - run: './gradlew build --no-deamon'
     
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4.4.3
       with:
-        name: ${{ inputs.project_name }}
+        name: ${{ inputs.project-name }}
         retention-days: 1
         path: build/libs/*.jar
