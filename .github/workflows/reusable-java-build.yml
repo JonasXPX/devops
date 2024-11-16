@@ -26,9 +26,10 @@ jobs:
       with:
         distribution: 'corretto'
         java-version: ${{ inputs.java-version }}
-    - run: |
+    - name: Gradle build
+      run: |
         chmod +x gradlew
-        ./gradlew -x tests build
+        ./gradlew -x test build
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4.4.3
       with:
