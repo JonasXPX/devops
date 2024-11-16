@@ -28,7 +28,7 @@ jobs:
         java-version: ${{ inputs.java-version }}
     - run: |
         chmod +x gradlew
-        ./gradlew build --no-deamon
+        ./gradlew -x tests build
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4.4.3
       with:
